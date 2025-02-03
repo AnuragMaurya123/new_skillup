@@ -13,7 +13,7 @@ interface IProp {
 const ExperienceCard = ({ img, number, para, sign, tag, id }: IProp) => {
   return (
     <div
-      className={`w-full sm:min-w-[206px] md:min-w-[284px] lg:w-[286px] h-auto p-7 pb-0 overflow-hidden rounded-3xl border flex flex-col justify-start items-start ${
+      className={`min-w-[286px] min-h-[335px] border-none pl-4 pr-4 h-[335px] lg:w-[286px] lg:h-[335px] sm:w-[206px] sm:h-[242px] overflow-hidden rounded-lg border flex flex-col justify-start items-start ${
         id === 2
           ? "bg-green-light text-green-primary"
           : "bg-green-primary text-white"

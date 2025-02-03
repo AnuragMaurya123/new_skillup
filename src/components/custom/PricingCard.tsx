@@ -42,7 +42,7 @@ export default function PricingCard({ about, feature, id, link, name, plan,tag  
 
   return (
     <div
-      className={`md:h-[900px] xl:h-[735px] h-[710px] transition-all hover:scale-[1.02] mx-auto ${
+      className={`md:h-[900px] xl:h-[735px] h-[725px] transition-all hover:scale-[1.02] mx-auto ${
         id === 2 && " bg-green-secondary text-white"
       } rounded-lg overflow-hidden shadow-xl relative flex flex-col p-3 items-center justify-around`}
     >

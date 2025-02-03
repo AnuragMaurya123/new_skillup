@@ -1,33 +1,80 @@
-import { animation } from '@/constants';
-import styled from 'styled-components';
-import Button from '../Button';
-import ShinyButton from '@/components/magicui/shiny-button';
+"use client";
 
-export default function SmallScreenAnimation() {
+import { AnimatedListSmall } from "@/components/ui/animated-list-small-screen";
+import { animation } from "@/constants";
+import { cn } from "@/lib/utils";
+import Button from "../Button";
+import ShinyButton from "@/components/magicui/shiny-button";
+
+
+interface Item {
+  image: string;
+  title: string;
+  position: string;
+  image2: string;
+  classname:string;
+}
+
+
+const Notification = ({ image, title, position, image2 ,classname }: Item) => {
   return (
-   <div className="">
-     <StyledWrapper>
-          <div className="card">
-            <div className="messages">
-              {
-                animation.map((card,i)=>(
-                <div className="message " key={i}>
-                <div className="flex items-center gap-2 w-full">
-                <img src={card.image} alt={card.image} className="message-icon" />
-                <div className="message-info">
-                  <div className="message-header">
-                    <div className="message-title">{card.title}</div>
-                  </div>
-                  <div className="message-content">{card.position}</div>
-                </div>
-                </div>
-                <img src={card.image2} alt={card.image2} className="w-22 h-6" />
-              </div>
-                ))
-              }
-       
-            </div>
-            <div className="flex items-center gap-2 my-6 w-full">
+    <figure
+      className={cn(
+        "relative  min-h-fit w-full  cursor-pointer overflow-hidden  p-4 ",
+
+        `${classname}`,
+        // animation styles
+        "transition-all duration-200 ease-in-out hover:scale-[103%]",
+        // light styles
+        // dark styles
+        "transform-gpu dark:bg-transparent dark:backdrop-blur-md dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset]",
+      )}
+    >
+      <div className="flex flex-row items-center justify-between gap-3">
+      <div className="flex items-center gap-2">
+      <div
+          className="flex size-10 items-center justify-center rounded-2xl"
+        >
+          <img src={image} alt="" />
+        </div>
+        <div className="flex flex-col overflow-hidden">
+          <figcaption className="flex flex-col items-start whitespace-pre text-lg font-medium dark:text-white ">
+            <span className="text-base font-semibold">{title}</span>
+            <span className="text-xs text-gray-500">{position}</span>
+          </figcaption>
+          
+        </div>
+      </div>
+        <div
+          className="flex  items-center justify-center rounded-2xl"
+        >
+          <img src={image2} alt="" />
+        </div>
+      </div>
+    </figure>
+  );
+};
+
+
+export function AnimatedListDemo2({
+  className,
+}: {
+  className?: string;
+}) {
+  return (
+    <div
+      className={cn(
+        "relative flex h-[430px] w-full flex-col overflow-hidden   bg-background   bg-white rounded-2xl",
+        className,
+      )}
+    >
+      <h1 className="text-[#878C97] p-4 text-base font-medium">More than 200+ experts instead us</h1>
+      <AnimatedListSmall>
+        {animation.map((item, idx) => (
+          <Notification {...item} key={idx} classname={idx === 0 ? "" :"border-b-[1px] border-b-[#878C97]"} />
+        ))}
+      </AnimatedListSmall>
+      <div className="flex items-center gap-2 px-4 md:py-4 w-full">
               <Button text="Enroll Now" classname="py-3 px-6 lg:px-8 lg:py-3  w-full text-white" />
               <ShinyButton className="border rounded-md  w-full flex justify-center">
                 <span className="text-xs text-black font-semibold ">
@@ -35,144 +82,6 @@ export default function SmallScreenAnimation() {
                 </span>
               </ShinyButton>
             </div>
-          </div>
-        </StyledWrapper>
-        
-   </div>
-  )
+    </div>
+  );
 }
-
-const StyledWrapper = styled.div`
-  .card {
-    width: 100%;
-    height: auto;
-    background: #fff;
-    box-shadow: 0px 1px 32px 8px rgba(0, 0, 0, 0.05);
-    border-radius: 0.875rem;
-    padding: 1.5rem;
-    -webkit-user-drag: none;
-    font-family:
-      ui-sans-serif,
-      system-ui,
-      -apple-system,
-      BlinkMacSystemFont,
-      Segoe UI,
-      Roboto,
-      Noto Sans,
-      Ubuntu,
-      Cantarell,
-      Helvetica Neue,
-      Arial,
-      sans-serif,
-      Apple Color Emoji,
-      Segoe UI Emoji,
-      Segoe UI Symbol,
-      Noto Color emoji;
-    overflow: hidden;
-    --delay: 500ms;
-  }
-
-  .messages {
-    width: 100%;
-  }
-
-  .message {
-    width: 100%;
-    border: 1.5px solid rgba(0, 0, 0, 0.08);
-    border-radius: 0.5rem;
-    padding: 1rem 1.25rem;
-    display: flex;
-    gap: 1rem;
-    transform: scale(0);
-    height: 0;
-    box-shadow: 0px 4px 16px 8px rgba(0, 0, 0, 0.03);
-    animation: show-message 200ms forwards;
-    transform-origin: top center;
-    visibility: hidden;
-    transition: all 0.2s ease-in-out;
-    cursor: pointer;
-  }
-
-  .message:hover {
-    box-shadow: 0px 3px 16px 8px rgba(0, 0, 0, 0.07);
-    transform: translateY(-2px) scale(1.1);
-  }
-
-  .message-icon {
-    width: 2.5rem;
-    height: 2.5rem;
-    min-width: 2.5rem;
-    min-height: 2.5rem;
-    border-radius: 1rem;
-  }
-
-  .message:nth-child(1) {
-    animation-delay: calc(4 * var(--delay));
-  }
-
-  .message:nth-child(2) {
-    animation-delay: calc(3 * var(--delay));
-  }
-
-  .message:nth-child(3) {
-    animation-delay: calc(2 * var(--delay));
-  }
-
-  .message:nth-child(4) {
-    animation-delay: var(--delay);
-  }
-
- 
-
-  .message-info {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .message-header {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    line-height: 1;
-    user-select: none;
-    -webkit-user-select: none;
-  }
-
-  .message-title {
-    font-size: 1rem;
-    font-weight: 600;
-  }
-
-  .message-time {
-    font-size: 0.875rem;
-    color: #454545;
-  }
-
-  .message-time::before {
-    content: "•";
-    margin: 0 0.25rem;
-    font-size: 0.875rem;
-    color: #454545;
-  }
-
-  .message-content {
-    margin-top: 0.5rem;
-    line-height: 1;
-    text-overflow: ellipsis;
-    white-space: wrap;
-    font-weight: 300;
-  }
-
-  @keyframes show-message {
-    0% {
-      transform: scale(0);
-      margin-bottom: 0;
-      visibility: visible;
-    }
-    100% {
-      transform: scale(1);
-      height: 100%;
-      margin-bottom: 1rem;
-      visibility: visible;
-    }
-  }`;

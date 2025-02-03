@@ -1,15 +1,16 @@
 import ShinyButton from "@/components/magicui/shiny-button";
 import Batch from "../Batch";
 import Learner from "@/components/shared/Learner";
-import Animation from "./Animation";
-import SmallScreenAnimation from "./SmallScreenAnimation";
+
+import { AnimatedListDemo2 } from "./SmallScreenAnimation";
+import { AnimatedListDemo } from "./Animation";
 
 
 
 export default function Guidance() {
 
     return (
-   <div className=" container pl-0 pr-0 lg:p-0 xl:h-[900px] h-[1450px] lg:h-[1700px] md:h-[1550px]  bg-[#159B76] rounded-3xl flex flex-col xl:flex-row my-14 lg:my-28">
+   <div className=" container pl-0 pr-0 lg:p-0 xl:h-[775px] h-[1375px] lg:h-[1590px] md:h-[1550px]  bg-[#159B76] rounded-3xl flex flex-col xl:flex-row my-14 lg:my-28">
   <div className=" p-6  xl:w-1/2 white   lg:pl-16 mt-8 lg:mt-16 xl:mt-16 space-y-8 relative mx-auto ">
    <div className="flex justify-center lg:justify-start">
    <Batch classname="p-4 rounded-full flex items-center justify-around gap-2 w-max bg-[#21B38C]">
@@ -32,13 +33,14 @@ export default function Guidance() {
         Enroll in AI <img src="/icons/arrright2.svg" alt="arrow right" />
       </span>
     </ShinyButton>
-    <div className="absolute bottom-4 left-0 w-full hidden xl:block">
-      <Animation />
+    <div className="absolute -bottom-1 left-0 w-full hidden xl:block px-4">
+    <h1 className="text-[#878C97]   text-base font-medium">More than 200+ experts instead us</h1> 
+      <AnimatedListDemo/>
     </div>
   </div>
 
   {/* Image Section */}
-  <div className="xl:w-1/2 orange flex items-center justify-center md:items-end relative mt-28 xl:mt-0 md:pt-28 ">
+  <div className="xl:w-1/2 orange flex items-center justify-center md:items-end relative mt-28 lg:pt-0 xl:mt-0 md:pt-28 ">
     {/* Background Image */}
     <img src="/girl.png" alt="Girl Image" className=" z-10 max-w-full h-auto" />
 
@@ -46,11 +48,11 @@ export default function Guidance() {
     <img
       src="/ladel.png"
       alt="Ladel Image"
-      className="absolute top-[-75px] md:bottom-0 lg:top-[-79px] xl:top-[805px] xl:left-[340px] md:left-48 transform  z-20  xl:w-auto md:w-20%"
+      className="absolute top-[-75px] md:bottom-0 lg:top-[-79px] xl:top-[695px] xl:left-[340px] md:left-48 lg:left-80 transform  z-20  xl:w-auto md:w-20%"
     />
   </div>
-  <div className="xl:hidden block   w-full mb-8">
-  <SmallScreenAnimation/>
+  <div className="xl:hidden block bg-[#F0F6F0] p-4 rounded-2xl   w-full mb-8">
+  <AnimatedListDemo2/>
 </div>
 </div>
 
